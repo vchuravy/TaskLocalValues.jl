@@ -1,0 +1,7 @@
+name = "TaskLocalValues"
+uuid = "ed4db957-447d-4319-bfb6-7fa9ae7ecf34"
+authors = ["Valentin Churavy <v.churavy@gmail.com>"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"
