@@ -1,7 +1,10 @@
 module TaskLocalValues
 
+export TaskLocalValue
+
 mutable struct TaskLocalValue{T, F}
     initializer::F
+    TaskLocalValue{T}(initializer::F) where {T,F} = new{T,F}(initializer)
 end
 
 function Base.getindex(val::TaskLocalValue{T}) where T
