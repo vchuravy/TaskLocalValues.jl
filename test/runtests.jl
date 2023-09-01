@@ -6,6 +6,7 @@ const tlv = TaskLocalValue{Int}(()->0)
 import Base.Threads: @spawn
 
 @testset "basics" begin
+    @test eltype(tlv) == Int
     @test tlv[] == 0
     tlv[] += 1
     @test tlv[] == 1

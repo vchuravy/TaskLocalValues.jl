@@ -7,6 +7,8 @@ mutable struct TaskLocalValue{T, F}
     TaskLocalValue{T}(initializer::F) where {T,F} = new{T,F}(initializer)
 end
 
+Base.eltype(::TaskLocalValue{T}) where T = T
+
 function Base.getindex(val::TaskLocalValue{T}) where T
     tls = Base.task_local_storage()
     get!(()->val.initializer()::T, tls, val)::T
