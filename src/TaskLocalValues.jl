@@ -14,8 +14,8 @@ function Base.getindex(val::TaskLocalValue{T}) where T
     get!(()->val.initializer()::T, tls, val)::T
 end
 
-function Base.setindex!(val::TaskLocalValue{T}, value::T) where T
-    Base.task_local_storage(val, value)
+function Base.setindex!(val::TaskLocalValue{T}, value) where T
+    Base.task_local_storage(val, convert(T, value))
     return value
 end
 
