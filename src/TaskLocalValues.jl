@@ -15,9 +15,8 @@ function Base.getindex(val::TaskLocalValue{T}) where T
 end
 
 function Base.setindex!(val::TaskLocalValue{T}, value) where T
-    Tvalue = convert(T, value)
-    Base.task_local_storage(val, Tvalue)
-    return Tvalue
+    Base.task_local_storage(val, convert(T, value))
+    return value
 end
 
 end # module TaskLocalValues
