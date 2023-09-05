@@ -20,13 +20,13 @@ using TaskLocalValues
 
 const counter = TaskLocalValue{Int}(()->0)
 
-@show tlv[] # 0 -- initialized on first use
-tlv[] += 1
-@show tlv[] # 1
+@show counter[] # 0 -- initialized on first use
+counter[] += 1
+@show counter[] # 1
 @sync begin
     @spawn begin
-        @show tlv[] # 0 -- each tasks gets their own copy
-        tlv[] += 1
+        @show counter[] # 0 -- each tasks gets their own copy
+        counter[] += 1
     end
 end
 ```
