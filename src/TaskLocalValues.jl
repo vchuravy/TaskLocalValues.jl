@@ -19,4 +19,13 @@ function Base.setindex!(val::TaskLocalValue{T}, value) where T
     return value
 end
 
+"""
+    empty!(tlv::TaskLocalValue)
+
+Remove the current state of `tlv` from the current task-local-storage, potentially allowing
+it to be garbage collected. Calling `getindex!` or `setindex!` on `tlv` will cause it to be
+re-initialized.
+"""
+Base.empty!(val::TaskLocalValue) = delete!(Base.task_local_storage(), val)
+
 end # module TaskLocalValues
