@@ -22,7 +22,7 @@ import Base.Threads: @spawn
             @test tlv[] == 1
         end
     end
-    delete!(tlv)
+    empty!(tlv)
     @test !(haskey(Base.task_local_storage(), tlv))
     @test tlv[] == 0
     @test haskey(Base.task_local_storage(), tlv)
