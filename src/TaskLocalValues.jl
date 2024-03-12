@@ -19,4 +19,6 @@ function Base.setindex!(val::TaskLocalValue{T}, value) where T
     return value
 end
 
+Base.delete!(val::TaskLocalValue) = delete!(Base.task_local_storage(), val)
+
 end # module TaskLocalValues
