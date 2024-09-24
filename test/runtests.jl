@@ -26,4 +26,7 @@ import Base.Threads: @spawn
     @test !(haskey(Base.task_local_storage(), tlv))
     @test tlv[] == 0
     @test haskey(Base.task_local_storage(), tlv)
+    # Constructor without T (inferred from initializer)
+    tlv2 = TaskLocalValue(() -> 0.0)
+    @test tlv2 isa TaskLocalValue{Float64}
 end

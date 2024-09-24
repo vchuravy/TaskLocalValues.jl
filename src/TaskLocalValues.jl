@@ -5,6 +5,9 @@ export TaskLocalValue
 mutable struct TaskLocalValue{T, F}
     initializer::F
     TaskLocalValue{T}(initializer::F) where {T,F} = new{T,F}(initializer)
+    function TaskLocalValue(initializer::F) where {F}
+        return new{Base.promote_op(initializer), F}(initializer)
+    end
 end
 
 Base.eltype(::TaskLocalValue{T}) where T = T
