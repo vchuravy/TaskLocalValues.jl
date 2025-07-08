@@ -2,8 +2,13 @@ module TaskLocalValues
 
 export TaskLocalValue
 
+# Compat for const fields
+@eval macro $(Symbol("const"))(field)
+    VERSION >= v"1.8.0-DEV.1148" ? Expr(:const, esc(field)) : esc(field)
+end
+
 mutable struct TaskLocalValue{T, F}
-    initializer::F
+    @const initializer::F
     TaskLocalValue{T}(initializer::F) where {T,F} = new{T,F}(initializer)
     function TaskLocalValue(initializer::F) where {F}
         return new{Base.promote_op(initializer), F}(initializer)
